@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class Sotrudnik {
-    
+
     private Integer id;
     private String fio;
     private Date dataRozhdenia;
@@ -18,7 +18,9 @@ public class Sotrudnik {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        if (id >= 0) {
+            this.id = id;
+        }
     }
 
     public String getFio() {
@@ -81,6 +83,5 @@ public class Sotrudnik {
     public String toString() {
         return fio;
     }
-    
-    
+
 }
