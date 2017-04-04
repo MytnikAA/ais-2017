@@ -75,7 +75,7 @@ public class Automobill {
         this.probeg = probeg;
     }
 
-    public Sotrudnik getSotrudnik() {
+    public Sotrudnik getDriver() {
         return sotrudnik;
     }
 
