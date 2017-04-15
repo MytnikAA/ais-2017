@@ -2,6 +2,11 @@ package dao;
 
 import java.util.List;
 
+/**
+ *
+ * @author Student
+ * @param <T>
+ */
 public interface DAO<T> {
     
     Integer create(T entity);

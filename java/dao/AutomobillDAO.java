@@ -41,7 +41,7 @@ public class AutomobillDAO implements DAO<Automobill> {
             if (keys.next()) {
                 id = keys.getInt(1);
             }
-            stmt.close();
+            keys.close();
             return id;
         } catch (SQLException ex) {
             Logger.getLogger(AutomobillDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,7 +51,17 @@ public class AutomobillDAO implements DAO<Automobill> {
 
     @Override
     public Automobill read(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Automobill auto = null;
+        String sql = "SELECT * FROM automibil;";
+        try (PreparedStatement st = con.prepareStatement(sql);
+                ResultSet rs = st.executeQuery();) {
+            if (rs.next()) {
+                auto.setId(rs.getInt("id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AutomobillDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return auto;
     }
 
     @Override
