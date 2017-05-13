@@ -79,7 +79,7 @@ public class DolzhnostDAO implements DAO<Dolzhnost> {
 
     @Override
     public void update(Dolzhnost entity) {
-        String sql = "UPDATE `taxopark`.`dolzhnost` SET (`name`, `oklad`, `obiazannost`, `trebovania`) VALUE (?, ?, ?, ?) WHERE id = ?;";
+        String sql = "UPDATE `taxopark`.`dolzhnost` SET `name` = ?, `oklad` = ?, `obiazannost` = ?, `trebovania` = ? WHERE id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql);) {
             st.setString(1, entity.getName());
             st.setFloat(2, entity.getOklad());
@@ -100,6 +100,14 @@ public class DolzhnostDAO implements DAO<Dolzhnost> {
             st.execute();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void save(Dolzhnost d) {
+        if (d.getId() == null) {
+            create(d);
+        } else {
+            update(d);
         }
     }
     
